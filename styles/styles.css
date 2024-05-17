@@ -1,0 +1,36 @@
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 100px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 50%; /* Make the logo's border round */
+    overflow: hidden; /* Hide overflowing content (if any) */
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li:last-child {
+    margin-right: 0; /* Remove margin from the last item */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black; /* Adjust link color as needed */
+    transition: color 0.3s ease; /* Smooth transition for link color */
+}
+
+nav ul li a:hover {
+    color: #007bff; /* Change link color on hover */
+}
