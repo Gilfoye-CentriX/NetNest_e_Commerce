@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetNest - Shopping Cart</title>
+    <link rel="stylesheet" href="styles/general_style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/NetNest-logo.jpg" alt="NetNest Logo" class="logo-img">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="create_account.html">Create Account</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Your Shopping Cart</h1>
+        <div class="cart-items">
+            <!-- Cart items will be added here -->
+        </div>
+        <div class="cart-summary">
+            <h2>Order Summary</h2>
+            <ul>
+                <li>Subtotal: <span id="subtotal">R0.00</span></li>
+				<li>Tax: <span id="tax">R0.00</span></li>
+				<li>Total: <span id="total">R0.00</span></li>
+            </ul>
+            <button onclick="window.location.href='checkout.html'">Proceed to Checkout</button> <!-- Added onclick attribute -->
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 NetNest. All rights reserved.</p>
+    </footer>
+	<script src="scripts/product_script.js"></script>
+	<script src="scripts/cart.js"></script>
+</body>
+</html>
