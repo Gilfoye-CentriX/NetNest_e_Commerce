@@ -1,9 +1,10 @@
-from flask import Blueprint, request, jsonify, session
+from flask import Blueprint, request, jsonify, session, render_template
 from flask_login import login_required, current_user
 
 bp = Blueprint('cart', __name__)
 
 @bp.route('/add_to_cart', methods=['POST'])
+@bp.route('/cart')
 @login_required
 def add_to_cart():
     user_id = current_user.id

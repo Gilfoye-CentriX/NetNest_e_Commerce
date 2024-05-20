@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetNest - Home</title>
+    <<link rel="stylesheet" href="{{ url_for('static', filename='css/general_style.css') }}">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<style>
+		.Welcome-logo img {
+			width: 60px; /* Adjust logo size as needed */
+			height: auto;
+			border-radius: 50%; /* Make the logo round */
+			overflow: hidden;
+		}
+		.Welcome-banner {
+			text-align: center;
+		}
+		.Welcome-banner img {
+			width: 200px; /* Adjust image size as needed */
+			border-radius: 15px; /* Round border for the image */
+		}
+	</style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/NetNest-logo.jpg') }}" alt="NetNest Logo" class="logo-img">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('main.home') }}">Home</a></li>
+                <li><a href="{{ url_for('products.show_products') }}">Products</a></li>
+                <li><a href="{{ url_for('cart.view_cart') }}">Cart</a></li>
+                <li><a href="{{ url_for('checkout.view_checkout') }}">Checkout</a></li>
+                <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                <li class="active"><a href="{{ url_for('auth.register') }}">Create Account</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>Welcome to NetNest</h1>
+            <section class="Welcome-banner">
+                <img src="{{ url_for('static', filename='images/NetNest.jpg') }}" alt="NetNest Image">
+            </section>
+            <p>Discover the best deals on SmartTech.</p>
+            <a href="/products" class="btn">Shop Now</a>
+        </section>
+        <section class="featured-products">
+            <!-- Featured products will be added here -->
+        </section>
+        <section class="promo-banners">
+            <!-- Promotional banners will be added here -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 NetNest. All rights reserved.</p>
+    </footer>
+</body>
+</html>

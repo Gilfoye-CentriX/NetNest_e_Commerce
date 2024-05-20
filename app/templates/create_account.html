@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - NetNest</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/general_style.css') }}">
+    <style>
+        .create-account-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .create-account-form h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .create-account-form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .create-account-form input[type="text"],
+        .create-account-form input[type="email"],
+        .create-account-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        .create-account-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .create-account-form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/NetNest-logo.jpg') }}" alt="NetNest Logo" class="logo-img">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('main.home') }}">Home</a></li>
+                <li><a href="{{ url_for('products.show_products') }}">Products</a></li>
+                <li><a href="{{ url_for('cart.view_cart') }}">Cart</a></li>
+                <li><a href="{{ url_for('checkout.view_checkout') }}">Checkout</a></li>
+                <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                <li class="active"><a href="{{ url_for('auth.register') }}">Create Account</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="create-account-form">
+            <h2>Create Account</h2>
+            <form action="{{ url_for('auth.register') }}" method="POST">
+                <label for="fullname">Full Name:</label>
+                <input type="text" id="fullname" name="fullname" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Create Account</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 NetNest. All rights reserved.</p>
+    </footer>
+</body>
+</html>
