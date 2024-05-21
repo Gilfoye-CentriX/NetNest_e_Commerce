@@ -5,6 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NetNest - Products</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/general_style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function addToCart(productId) {
+            $.ajax({
+                url: "{{ url_for('cart.add_to_cart') }}",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({ product_id: productId }),
+                success: function(response) {
+                    alert(response.message);
+                },
+                error: function(xhr) {
+                    if (xhr.status === 401) {
+                        alert("You need to log in first.");
+                    } else {
+                        alert("Error: " + xhr.responseJSON.error);
+                    }
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            $('.add-to-cart-button').click(function() {
+                const productId = $(this).data('product-id');
+                addToCart(productId);
+            });
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -38,19 +66,19 @@
                 <img src="{{ url_for('static', filename='images/Smartphone.jpg') }}" alt="Android 6.0">
                 <h2>Android 6</h2>
                 <p>R99.99</p>
-                <button>Add to Cart</button>
+                <button class="add-to-cart-button" data-product-id="1">Add to Cart</button>
             </div>
             <div class="product-card" data-category="samsung">
                 <img src="{{ url_for('static', filename='images/Cellphone.jpg') }}" alt="Samsung">
                 <h2>Samsung</h2>
                 <p>R149.99</p>
-                <button>Add to Cart</button>
+                <button class="add-to-cart-button" data-product-id="2">Add to Cart</button>
             </div>
             <div class="product-card" data-category="huawei">
                 <img src="{{ url_for('static', filename='images/Phone.jpg') }}" alt="Huawei">
                 <h2>Huawei</h2>
                 <p>R149.99</p>
-                <button>Add to Cart</button>
+                <button class="add-to-cart-button" data-product-id="3">Add to Cart</button>
             </div>
             <!-- More product cards will be added here -->
         </div>
@@ -58,8 +86,5 @@
     <footer>
         <p>&copy; 2024 NetNest. All rights reserved.</p>
     </footer>
-
-    <script src="{{ url_for('static', filename='js/product_script.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/cart.js') }}"></script>
 </body>
 </html>

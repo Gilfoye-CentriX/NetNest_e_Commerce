@@ -6,28 +6,29 @@ from app.models import get_user_by_id
 def create_app():
     app = Flask(__name__)
     app.secret_key = '8427356'
+    
     login_manager = LoginManager()
     login_manager.init_app(app)
-
-    @login_manager.user_loader
-    def load_user(user_id):
-        return get_user_by_id(user_id)
 
     from app.routes.auth import bp as auth_bp
     app.register_blueprint(auth_bp, url_prefix='/auth')
 
-    from app.routes.cart import bp as cart_bp
-    app.register_blueprint(cart_bp, url_prefix='/cart')
-
-    from app.routes.products import bp as products_bp
-    app.register_blueprint(products_bp)
-    
-    from app.routes.checkout import bp as checkout_bp
-    app.register_blueprint(checkout_bp)
-
     from app.routes.main import bp as main_bp
     app.register_blueprint(main_bp)
 
+    from app.routes.products import bp as products_bp
+    app.register_blueprint(products_bp, url_prefix='/products')
+
+    from app.routes.cart import bp as cart_bp
+    app.register_blueprint(cart_bp, url_prefix='/cart')
+
+    from app.routes.checkout import bp as checkout_bp
+    app.register_blueprint(checkout_bp, url_prefix='/checkout')
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.get(user_id)
+    
     return app
 
 def init_db():

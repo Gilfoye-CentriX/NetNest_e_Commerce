@@ -1,6 +1,5 @@
-from flask import Blueprint, request, jsonify, render_template, redirect, url_for
+from flask import Blueprint, request, jsonify, redirect, url_for, render_template
 from flask_login import login_user, logout_user, current_user, login_required
-import sqlite3
 from app.models import get_user, User
 
 bp = Blueprint('auth', __name__)
@@ -20,12 +19,12 @@ def register():
         conn = sqlite3.connect('ecommerce.db')
         cursor = conn.cursor()
         cursor.execute('INSERT INTO users (fullname, email, username, password) VALUES (?, ?, ?, ?)', 
-                           (fullname, email, username, password))
+                       (fullname, email, username, password))
         conn.commit()
         conn.close()
         return jsonify({'message': 'User registered successfully'})
     return render_template('create_account.html')
-    
+
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -36,7 +35,7 @@ def login():
         user = get_user(username)
         if user and user.password == password:
             login_user(user)
-            return jsonify({'message': 'Login successful'})
+            return redirect(url_for('main.home'))
         return jsonify({'error': 'Invalid credentials'}), 401
     return render_template('login.html')
 
@@ -44,4 +43,4 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return jsonify({'message': 'Logged out successfully'})
+    return redirect(url_for('main.home'))
