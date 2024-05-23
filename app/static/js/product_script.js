@@ -1,27 +1,32 @@
+// app\static\js\product_script.js
 document.addEventListener("DOMContentLoaded", function() {
     const categoryFilter = document.getElementById("category-filter");
     const productCards = document.querySelectorAll(".product-card");
     const addToCartButtons = document.querySelectorAll(".product-card button");
 
-    // Function to add a product to the cart
-    function addToCart(productName, productPrice) {
-        const cartItem = { name: productName, price: parseFloat(productPrice) };
-        // Send the cart item to the cart.js file for processing (assuming cart.js handles cart functionality)
-        addToCartFunction(cartItem);
-        alert("Item added to cart!");
+    function addToCart(productId, quantity = 1) {
+        fetch('/add_to_cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ product_id: productId, quantity: quantity }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+        });
     }
 
-    // Event listener for Add to Cart buttons
     addToCartButtons.forEach(button => {
         button.addEventListener("click", function() {
             const productCard = this.closest(".product-card");
-            const productName = productCard.querySelector("h2").textContent;
-            const productPrice = productCard.querySelector("p").textContent.replace("R", "");
-            addToCart(productName, productPrice);
+            const productId = productCard.getAttribute("data-product-id");
+            const quantity = 1; // You can change this to get quantity from user input
+            addToCart(productId, quantity);
         });
     });
 
-    // Event listener for category filter
     categoryFilter.addEventListener("change", function() {
         const selectedCategory = categoryFilter.value;
         productCards.forEach(card => {

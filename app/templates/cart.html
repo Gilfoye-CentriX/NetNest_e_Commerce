@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetNest - Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/general_style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/NetNest-logo.jpg') }}" alt="NetNest Logo" class="logo-img">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('main.home') }}">Home</a></li>
+                <li><a href="{{ url_for('products.show_products') }}">Products</a></li>
+                <li><a href="{{ url_for('cart.view_cart') }}">Cart</a></li>
+                <li><a href="{{ url_for('checkout.view_checkout') }}">Checkout</a></li>
+                <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                <li class="active"><a href="{{ url_for('auth.register') }}">Create Account</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Your Shopping Cart</h1>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Android 6</td>
+                    <td>R3999.99</td>
+                    <td><input type="number" value="1" min="1"></td>
+                    <td>R3999.99</td>
+                    <td><button>Remove</button></td>
+                </tr>
+                <tr>
+                    <td>Samsung Galaxy A3</td>
+                    <td>R5999.99</td>
+                    <td><input type="number" value="1" min="1"></td>
+                    <td>R5999.99</td>
+                    <td><button>Remove</button></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">Total:</td>
+                    <td colspan="2">R9999.98</td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="checkout-buttons">
+            <a href="{{ url_for('checkout.view_checkout') }}" class="btn">Proceed to Checkout</a>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 NetNest. All rights reserved.</p>
+    </footer>
+</body>
+</html>

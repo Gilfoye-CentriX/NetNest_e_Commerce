@@ -26,3 +26,62 @@ header nav a:hover {
 main {
     padding: 2rem;
 }
+
+/*home */
+.Welcome-logo img {
+    width: 60px; /* Adjust logo size as needed */
+    height: auto;
+    border-radius: 50%; /* Make the logo round */
+    overflow: hidden;
+}
+.Welcome-banner {
+    text-align: center;
+}
+.Welcome-banner img {
+    width: 200px; /* Adjust image size as needed */
+    border-radius: 15px; /* Round border for the image */
+}
+
+/*login*/
+.login-form {
+	max-width: 400px;
+    margin: 0 auto;
+	padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+    background-color: #0056b3;
+}

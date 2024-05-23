@@ -5,50 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - NetNest</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/general_style.css') }}">
-    <style>
-        .login-form {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .login-form h2 {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .login-form label {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .login-form input[type="text"],
-        .login-form input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            box-sizing: border-box;
-        }
-
-        .login-form button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-        .login-form button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <header>
@@ -57,7 +14,7 @@
         </div>
         <nav>
             <ul>
-				<li><a href="{{ url_for('main.home') }}">Home</a></li>
+                <li><a href="{{ url_for('main.home') }}">Home</a></li>
                 <li><a href="{{ url_for('products.show_products') }}">Products</a></li>
                 <li><a href="{{ url_for('cart.view_cart') }}">Cart</a></li>
                 <li><a href="{{ url_for('checkout.view_checkout') }}">Checkout</a></li>
@@ -81,7 +38,7 @@
     <footer>
         <p>&copy; 2024 NetNest. All rights reserved.</p>
     </footer>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function(){
             $('#login-form').on('submit', function(event){

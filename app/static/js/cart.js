@@ -1,14 +1,14 @@
+// app\static\js\cart.js
 document.addEventListener("DOMContentLoaded", function() {
     const cartItemsContainer = document.getElementById("cart-items");
     const subtotalElement = document.getElementById("subtotal");
     const taxElement = document.getElementById("tax");
     const totalElement = document.getElementById("total");
 
-    let cartItems = []; // Array to store cart items
+    let cartItems = [];
 
-    // Function to update cart items in the UI
     function updateCartUI() {
-        cartItemsContainer.innerHTML = ''; // Clear previous items
+        cartItemsContainer.innerHTML = '';
         cartItems.forEach(item => {
             const itemElement = document.createElement("div");
             itemElement.classList.add("cart-item");
@@ -23,9 +23,8 @@ document.addEventListener("DOMContentLoaded", function() {
             cartItemsContainer.appendChild(itemElement);
         });
 
-        // Calculate subtotal, tax, and total
-        const subtotal = cartItems.reduce((total, item) => total + item.price, 0);
-        const tax = subtotal * 0.15; // Assuming 15% tax
+        const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+        const tax = subtotal * 0.15;
         const total = subtotal + tax;
 
         subtotalElement.textContent = `R${subtotal.toFixed(2)}`;
@@ -33,20 +32,34 @@ document.addEventListener("DOMContentLoaded", function() {
         totalElement.textContent = `R${total.toFixed(2)}`;
     }
 
-    // Function to add an item to the cart
-    function addToCart(item) {
-        cartItems.push(item);
-        updateCartUI();
+    function fetchCartItems() {
+        fetch('/view_cart')
+            .then(response => response.json())
+            .then(data => {
+                cartItems = data;
+                updateCartUI();
+            });
     }
 
-    // Function to remove an item from the cart
+    function addToCart(item) {
+        fetch('/add_to_cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(item),
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            fetchCartItems();
+        });
+    }
+
     function removeCartItem(name) {
         cartItems = cartItems.filter(item => item.name !== name);
         updateCartUI();
     }
 
-    // Example: Add some initial items to the cart
-    addToCart({ name: "Android 6", price: 99.99 });
-    addToCart({ name: "Samsung", price: 149.99 });
-	addToCart({ name: "Huawei", price: 149.99 });
+    fetchCartItems();
 });

@@ -1,11 +1,12 @@
+#app\routes\cart.py
 from flask import Blueprint, request, jsonify, session, render_template
 from flask_login import login_required, current_user
+import sqlite3
 
 bp = Blueprint('cart', __name__)
 
 @bp.route('/add_to_cart', methods=['POST'])
-@bp.route('/cart')
-@login_required
+#@login_required
 def add_to_cart():
     user_id = current_user.id
     product_id = request.json.get('product_id')
@@ -13,7 +14,7 @@ def add_to_cart():
 
     conn = sqlite3.connect('ecommerce.db')
     cursor = conn.cursor()
-    
+
     cursor.execute('SELECT * FROM products WHERE id = ?', (product_id,))
     product = cursor.fetchone()
     if not product:
@@ -26,7 +27,7 @@ def add_to_cart():
         cursor.execute('UPDATE cart SET quantity = quantity + ? WHERE user_id = ? AND product_id = ?', (quantity, user_id, product_id))
     else:
         cursor.execute('INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)', (user_id, product_id, quantity))
-    
+
     conn.commit()
     conn.close()
 
