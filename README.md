@@ -42,16 +42,20 @@ NetNest E-Commerce is a simple online shopping platform built with Flask for the
 
 4. Initialize the database:
     ```bash
-    python
-    >>> from app import init_db
-    >>> init_db()
-    >>> exit()
+    flask db init
+    flask db migrate -m "Initial migration."
+    flask db upgrade
     ```
 
 5. Run the Flask app:
     ```bash
-    python run.py
+    flask run
     ```
+
+## Usage
+1. Access the application in your browser at `http://localhost:5000`.
+2. Register a new user or log in with existing credentials.
+3. Browse products, add them to your cart, and view your cart.
 
 ### Frontend Setup
 1. Navigate to the `frontend` directory:
